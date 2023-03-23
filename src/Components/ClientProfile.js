@@ -1,13 +1,15 @@
 import { Avatar} from '@mui/material';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import {useRef} from "react";
 import "./CSS/ClientProfile.css"
 const ClientProfile = () =>{
+    const buttonRef = useRef();
     const dispatch = useDispatch();
     const profileData = useSelector((state) => state.clientReducer);
     const onArchiveClick = () =>{
         if(!profileData.archived){
-            
+            buttonRef.current.innerText = "Un Archive"
             dispatch({
                 type:"setArchive",
                 payload:{
@@ -15,6 +17,7 @@ const ClientProfile = () =>{
                 }
             })
         }else if(profileData.archived){
+            buttonRef.current.innerText = "Archive"
             console.log("Inside unArchive ")
             dispatch({
                 type:"unArchive",
@@ -23,7 +26,13 @@ const ClientProfile = () =>{
                 }
             })
         }
-        
+        profileData.archived = !profileData.archived;
+    }
+    const onCopyLink = () =>{
+        //let copyText = "https://huber.ghostpool.com/wp-content/uploads/avatars/3/596dfc2058143-bpfull.png";
+        let copyText = JSON.stringify(profileData);
+        navigator.clipboard.writeText(copyText);
+        alert(copyText);
     }
     return(
         <div>
@@ -38,10 +47,10 @@ const ClientProfile = () =>{
             </button>
             <span style = {{marginLeft: "5px"}}>{profileData.name}</span><br></br>
             {   profileData.archived ?
-                <button style={{ marginLeft: "105px", marginTop: "10px"}} onClick={onArchiveClick}>Un Archive
+                <button ref = {buttonRef} style={{ marginLeft: "105px", marginTop: "10px"}} onClick={onArchiveClick}>Un Archive
                 <i style={{marginLeft:"5px"}} class="fa fa-archive" aria-hidden="true"></i>
                 </button> :
-                <button style={{ marginLeft: "105px", marginTop: "10px"}} onClick={onArchiveClick}>Archive
+                <button ref = {buttonRef} style={{ marginLeft: "105px", marginTop: "10px"}} onClick={onArchiveClick}>Archive
                 <i style={{marginLeft:"5px"}} class="fa fa-archive" aria-hidden="true"></i>
                 </button>
             }
@@ -82,7 +91,7 @@ const ClientProfile = () =>{
                 </button>
                 <h5 style={{marginLeft: "70px"}}>Onboard Clients</h5><br></br>
                 <p style={{marginTop:"-38px", marginLeft: "5px",fontSize:"smaller"}}>Share the link with prospectus and discuss all stuff</p>
-                <button  style={{background:"blue",color:"white",border:"1px solid blue",borderRadius:"3px", marginLeft:"5px", marginLeft:"70px"}}>Copy Link
+                <button  onClick={onCopyLink} style={{background:"blue",color:"white",border:"1px solid blue",borderRadius:"3px", marginLeft:"5px", marginLeft:"70px"}}>Copy Link
                 <i style={{marginLeft:"5px"}} class="fa fa-link" aria-hidden="true"></i>
                 </button>
             </div>

@@ -1,4 +1,5 @@
 import Avatar from "./Avatar"
+import ReactTimeAgo from 'react-time-ago'
 
 
 const ChatItem = (props) => {
@@ -11,11 +12,10 @@ const ChatItem = (props) => {
         <div className="chat__item__content">
           <div className="chat__msg">{props.msg}</div>
           <div className="chat__meta">
-            <span>16 mins ago</span>
-            <span>Seen 1.03PM</span>
+            <span><ReactTimeAgo date={props.date} locale="en-US"/></span>
           </div>
         </div>
-        <Avatar isOnline="active" image={props.image} />
+        <Avatar isOnline={props.isOnline} image={props.image} />
     </div>
     )
 }

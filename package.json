@@ -16,10 +16,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "emoji-picker-react": "^4.4.7",
+    "javascript-time-ago": "^2.5.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "react-time-ago": "^7.2.1",
+    "reactjs-popup": "^2.0.5",
     "redux": "^4.2.1",
     "styled-components": "^5.3.8",
     "web-vitals": "^2.1.4"

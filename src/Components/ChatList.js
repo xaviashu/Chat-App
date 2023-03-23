@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import ChatListItems from "./ChatListItems";
 import UserProfile from "./UserProfile";
 import "./CSS/chatList.css";
@@ -6,21 +6,17 @@ import { useSelector } from "react-redux";
 //import {allChatsActive, allChatsArchive} from "./chatListData"
 
 const ChatList = () =>{
-    const ashu = useSelector(state=>state.archiveReducer);
-    const {allChatsActive, allChatsArchive} = ashu;
-    console.log(ashu);
-    //console.log(allChatsArchive);
+    const {allChatsActive, allChatsArchive} = useSelector(state=>state.archiveReducer);
     const[toggleActiveChat, setToggleActiveChat] = useState(true);
     const[toggleAcrchiveChat, setToggleArchiveChat] = useState(false);
+    
 
     const toogleActive = ()=>{
       setToggleActiveChat(!toggleActiveChat);
-      setToggleArchiveChat(!toggleAcrchiveChat);
     }
 
     const toggleArchive = ()=>{
       setToggleArchiveChat(!toggleAcrchiveChat);
-      setToggleActiveChat(!toggleActiveChat);
     }
     return (
         <div><UserProfile/>

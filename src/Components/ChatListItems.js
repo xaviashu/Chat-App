@@ -8,7 +8,6 @@ const ChatListItems = (props) =>{
       image: props.image,
       isOnline: props.isOnline,
       name: props.name,
-      active: props.active
     }
     const proData = {
       name: props.name,
@@ -21,8 +20,12 @@ const ChatListItems = (props) =>{
       archived: props.archived
     }
     const selectChat = () => {
+      console.log(`In select chat data ${props.name}`);
       dispatch({
-        type:'newChat'
+        type:'newChat',
+        payload:{
+          data:props.name
+        }
        });
        dispatch({
         type: 'newChatHeader',

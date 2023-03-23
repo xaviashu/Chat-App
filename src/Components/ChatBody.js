@@ -5,13 +5,14 @@ import ClientProfile from "./ClientProfile"
 import "./CSS/chatBody.css";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import {chatReducer, chatHeaderReducer, clientReducer, archiveReducer} from "../Reducer";	
+import {chatReducer, chatHeaderReducer, clientReducer, archiveReducer, setUserActive} from "../Reducer";	
 const ChatBody = () => {
     const reducer = combineReducers({
       chatReducer,
       chatHeaderReducer,
       clientReducer,
-      archiveReducer
+      archiveReducer,
+      setUserActive
     })
     const store = createStore(reducer);
     return (
