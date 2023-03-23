@@ -8,16 +8,27 @@ const ClientProfile = () =>{
     const dispatch = useDispatch();
     const profileData = useSelector((state) => state.clientReducer);
     const onArchiveClick = () =>{
+        let proData = {
+            shortName:"EH",
+            email:"eleniH@gmail.com",
+            name: "Eleni Hobbs",
+            time: "13H",
+            attended: "188",
+            meetings: "119",
+            rejected: "42",
+            archived: false
+        }
         if(!profileData.archived){
-            buttonRef.current.innerText = "Un Archive"
+            //buttonRef.current.innerText = "Un Archive"
             dispatch({
                 type:"setArchive",
                 payload:{
                     data:profileData.name
                 }
             })
+            proData.archived = true;
         }else if(profileData.archived){
-            buttonRef.current.innerText = "Archive"
+            //buttonRef.current.innerText = "Archive"
             console.log("Inside unArchive ")
             dispatch({
                 type:"unArchive",
@@ -25,11 +36,16 @@ const ClientProfile = () =>{
                     data:profileData.name
                 }
             })
+            proData.archived = false;
         }
-        profileData.archived = !profileData.archived;
+        dispatch({
+            type: 'changeCPro',
+            payload:{
+                data: proData
+            }
+        })
     }
     const onCopyLink = () =>{
-        //let copyText = "https://huber.ghostpool.com/wp-content/uploads/avatars/3/596dfc2058143-bpfull.png";
         let copyText = JSON.stringify(profileData);
         navigator.clipboard.writeText(copyText);
         alert(copyText);
