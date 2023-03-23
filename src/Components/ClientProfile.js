@@ -9,14 +9,14 @@ const ClientProfile = () =>{
     const profileData = useSelector((state) => state.clientReducer);
     const onArchiveClick = () =>{
         let proData = {
-            shortName:"EH",
-            email:"eleniH@gmail.com",
-            name: "Eleni Hobbs",
-            time: "13H",
-            attended: "188",
-            meetings: "119",
-            rejected: "42",
-            archived: false
+            shortName:profileData.shortName,
+            email:profileData.email,
+            name: profileData.name,
+            time: profileData.time,
+            attended: profileData.attended,
+            meetings: profileData.meetings,
+            rejected: profileData.rejected,
+            archived: profileData.archived
         }
         if(!profileData.archived){
             //buttonRef.current.innerText = "Un Archive"
