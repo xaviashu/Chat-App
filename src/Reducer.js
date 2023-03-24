@@ -1,4 +1,5 @@
 import {allChatsActive, allChatsArchive} from "./Components/chatListData"
+const archiveData = {allChatsActive, allChatsArchive}
 const stateHeader = {
     image:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZ6tM7Nj72bWjr_8IQ37Apr2lJup_pxX_uZA&usqp=CAU",
     name: "Eleni Hobbs",
@@ -70,7 +71,7 @@ export const clientReducer = (clientPro = clientProfile, action) =>{
     }
 }
 
-export const archiveReducer = (archive = {allChatsActive, allChatsArchive}, action) => {
+export const archiveReducer = (archive = archiveData, action) => {
     if(action.type==="setArchive"){
         console.log('Inside setArchive')
         console.log(action.payload.data);
@@ -81,13 +82,10 @@ export const archiveReducer = (archive = {allChatsActive, allChatsArchive}, acti
             console.log(index);
             archive.allChatsActive[index].archived = true;
             archive.allChatsArchive.push(archive.allChatsActive[index]);
-            console.log(archive.allChatsArchive);
-            archive.allChatsActive = archive.allChatsActive.filter(chats =>{
-                return chats.name !== action.payload.data;
-            })
-            console.log(archive.allChatsActive);
+            archive.allChatsActive.splice(index,1);
+            
         }
-        return archive
+        return {allChatsActive, allChatsArchive};
     }else if(action.type === "unArchive"){
         console.log('Inside setUnArchive')
         const index = archive.allChatsArchive.findIndex(chats =>{
@@ -97,13 +95,9 @@ export const archiveReducer = (archive = {allChatsActive, allChatsArchive}, acti
         if(index > -1){
             archive.allChatsArchive[index].archived = false;
             archive.allChatsActive.push(archive.allChatsArchive[index]);
-            console.log(archive.allChatsActive);
-            archive.allChatsArchive = archive.allChatsArchive.filter(chats=>{
-                return chats.name !== action.payload.data;
-            });
-            console.log(archive.allChatsArchive);
+            archive.allChatsArchive.splice(index,1);
         }
-        return archive
+        return {allChatsActive, allChatsArchive};
     }
     else {
         return archive;

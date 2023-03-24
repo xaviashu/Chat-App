@@ -3,7 +3,6 @@ import ChatListItems from "./ChatListItems";
 import UserProfile from "./UserProfile";
 import "./CSS/chatList.css";
 import { useSelector } from "react-redux";
-//import {allChatsActive, allChatsArchive} from "./chatListData"
 
 const ChatList = () =>{
     const {allChatsActive, allChatsArchive} = useSelector(state=>state.archiveReducer);

@@ -1,4 +1,4 @@
- import { useEffect, useRef, useState } from "react";
+ import { useRef, useState } from "react";
  import Avatar from "./Avatar";
  import EmojiPicker from 'emoji-picker-react';
  import ChatItem from "./ChatItem"
@@ -70,9 +70,6 @@ const ChatContent = () => {
       }
       
     }
-    useEffect(()=>{
-    
-    },[userActive])
     return (
         <div className="main__chatcontent">
         <div className="content__header">
